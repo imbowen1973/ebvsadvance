@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading EBVS Learning Platform…</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 20%;
+      color: #333;
+    }
+    .spinner {
+      margin: 30px auto;
+      width: 50px;
+      height: 50px;
+      border: 6px solid #ccc;
+      border-top: 6px solid #007BFF;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h2>Launching the EBVS Learning Platform</h2>
+  <div class="spinner"></div>
+  <p id="status">Checking server availability…</p>
+
+  <script>
+    function checkDNS() {
+      const img = new Image();
+      img.onload = () => window.location.href = 'https://advance.ebvs.eu';
+      img.onerror = () => {
+        document.getElementById('status').textContent = 'Still checking…';
+        setTimeout(checkDNS, 5000);
+      };
+      img.src = 'https://advance.ebvs.eu/theme/image.php/core/1/favicon';
+    }
+
+    checkDNS();
+  </script>
+</body>
+</html>
